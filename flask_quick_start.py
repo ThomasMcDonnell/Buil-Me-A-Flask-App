@@ -46,10 +46,10 @@ def create_project(appname, project_path, structure):
     struct = os.path.join(script_dir, structure)
     shutil.copytree(struct, project)
 
-# vertualenv creation as venv into project directory 
+# virtualenv creation as venv into project directory
 def init_virtualenv(project_path, appname):
     project = os.path.join(project_path, appname)
-    # initialize vitualenv for project
+    # initialize virtualenv for project
     output, error = subprocess.Popen(
         [
             'virtualenv',
@@ -58,8 +58,9 @@ def init_virtualenv(project_path, appname):
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE).communicate()
     if error:
-        print(bcolors.FAIL + f'An error occured: \n{error}' + bcolors.ENDC,
-              end="")
+        print(bcolors.FAIL +
+              f'An error occured: \n{error}' +
+              bcolors.ENDC)
         sys.exit(2)
 
     venv_bin = os.path.join(project, 'venv/bin')
@@ -76,7 +77,7 @@ def init_virtualenv(project_path, appname):
     if error:
         print(bcolors.FAIL +
             f'An error occured during requiremets installation: \n{error}' +
-            bcolors.ENDC, end="")
+            bcolors.ENDC)
         sys.exit(2)
 
 # git init
@@ -94,7 +95,7 @@ def init_git(project_path, appname):
     if error:
         print(bcolors.FAIL +
               f'An error occured during git init: \n{error}' +
-              bcolors.ENDC, end="")
+              bcolors.ENDC)
         sys.exit(2)
     # copy over .gitinore
     shutil.copyfile(
@@ -105,13 +106,13 @@ def init_git(project_path, appname):
 if __name__ == "__main__":
     create_project(args.appname[0], args.path[0], args.structure[0])
     print(bcolors.OKGREEN +
-          f'{args.appname[0]}: Created successfully!!' + bcolors.ENDC, end="")
+          f'{args.appname[0]}: Created successfully!!' + bcolors.ENDC)
     if args.virtualenv:
         init_virtualenv(args.path[0], args.appname[0])
         print(bcolors.OKGREEN +
-          '\nVirtualenv created successfully!!' + bcolors.ENDC, end="")
+          '\nVirtualenv created successfully!!' + bcolors.ENDC)
     if args.git:
         init_git(args.path[0], args.appname[0])
         print(bcolors.OKGREEN +
-          '\nGit successfully initialized!!' + bcolors.ENDC, end="")
+          '\nGit successfully initialized!!' + bcolors.ENDC)
 

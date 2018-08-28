@@ -32,7 +32,7 @@ $ git clone git@github.com/ThomasMcDonnell/Build-Me-A-Flask-App
 For ease of use on Linux or Mac you can make this script easier to run. Simply add the following alias to either .bashrc or .zshrc, customizing it to match your directory structure:
 
 ```
-alias flask_start="python3 ${HOME}/flask_structure/flask_quick_start.py"
+alias flask_start="python3 ${HOME}/flask_quick_start/flask_quick_start.py"
 ```
 
 ## Contributing
